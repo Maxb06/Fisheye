@@ -5,6 +5,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
 
 header {
     display: flex;
@@ -54,6 +58,7 @@ h1 {
     filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.25));
 }
 
+/* home page styles for portraits descriptions */
 .photographer_section article p:nth-child(3) {
     color: #901C1C;
     font-size: 13px;
