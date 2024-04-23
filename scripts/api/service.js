@@ -1,4 +1,7 @@
-// Fonction pour récupérer les données des photographes depuis le fichier JSON
+/**
+ * Récupère les données des photographes depuis le fichier JSON.
+ * @returns {Promise<Array<Object>>} Une promesse résolue avec un tableau d'objets contenant les données des photographes.
+ */
 export async function getPhotographers() {
     try {
         const response = await fetch('data/photographers.json');
@@ -10,4 +13,3 @@ export async function getPhotographers() {
         return { photographers: [] }; 
     }
 }
-
