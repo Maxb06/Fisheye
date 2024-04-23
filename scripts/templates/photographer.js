@@ -14,7 +14,7 @@
  * @param {Object} data - Les données du photographe.
  * @returns {PhotographerModel} Le modèle de photographe.
  */
-function photographerTemplate(data) {
+export function photographerTemplate(data) {
     const { name, tagline, city, country, price, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
