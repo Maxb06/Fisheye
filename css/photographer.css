@@ -83,6 +83,7 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
 /* ajout styles modale */
 
 #message {
@@ -91,7 +92,7 @@ form input {
     resize: none;
 }
 
-/* styles page photographe */
+/* header */
 
 .photograph-header .contact_button {
     margin-right: 100px;
@@ -112,4 +113,35 @@ font-size: 44px;
 .location {
 color: #901C1C;
 font-size: 24px;
+}
+
+/* medias */
+
+.media-wrapper {
+    width: 70%;
+    margin-top: 101px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mediaPicture img {
+    border-radius: 8px;
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.mediaInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+}
+
+.media-card-wrapper h3 {
+    color: #901C1C;
+    font-size: 24px;
 }
