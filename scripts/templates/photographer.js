@@ -46,3 +46,33 @@ export function photographerTemplate(data) {
     }
     return { name, tagline, city, country, price, picture, getUserCardDOM }
 }
+
+/* Modèle des medias page photographe */
+export class MediaCard {
+    constructor(media) {
+        this._media = media
+    }
+
+    createMediaCard() {
+        const $wrapper = document.createElement('div');
+        $wrapper.classList.add('media-card-wrapper');
+
+        const mediaCard = `
+            <div class="mediaPicture">
+                <img
+                    alt="${this._media.title}"
+                    src="/assets/photographers/${this._media.image}"
+                />
+            </div>
+            <div class="mediaInfo">
+                <h3>${this._media.title}</h3>
+                <p>
+                    <span>${this._media.likes}</span>
+                </p>
+            </div>
+        `
+        
+        $wrapper.innerHTML = mediaCard
+        return $wrapper
+    }
+}

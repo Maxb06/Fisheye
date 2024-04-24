@@ -13,3 +13,25 @@ export async function getPhotographers() {
         return { photographers: [] }; 
     }
 }
+
+/* Récupère les medias depuis le fichier JSON */
+
+export class Api {
+    constructor(url) {
+        this._url = url;
+    }
+
+    async getPhotographersId() {
+        try {
+            const response = await fetch(this._url);
+            if (!response.ok) {
+                throw new Error('Impossible de récupérer les données');
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Erreur Fetch:', error);
+            return { photographers: [], media: [] }; 
+        }
+    }
+}
+

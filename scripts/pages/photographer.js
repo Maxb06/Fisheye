@@ -1,10 +1,10 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-// Import de la fonction getPhotographers depuis service.js
+
 import { getPhotographers } from '../api/service.js';
 
 /**
- * Affiche les données du photographe sur la page photographer.html.
+ * Affiche les données du photographe dans le header de la page photographer.html.
  * @param {Object} photographer - Les données du photographe à afficher.
  */
 async function displayPhotographerDetails(photographer) {
@@ -62,4 +62,31 @@ async function loadPhotographerDetails() {
 // Appel de la fonction pour charger et afficher les détails du photographe
 loadPhotographerDetails();
 
-  
+
+/* Affiche la galerie sur la page photographe */
+
+import { Api } from '../api/service.js';
+import { MediaCard } from '../templates/photographer.js';
+
+class App {
+    constructor() {
+        this.$mediasWrapper = document.querySelector('.media-wrapper')
+        this.api = new Api('/data/photographers.json')
+    }
+
+    async main() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const photographerId = urlParams.get('id');
+
+        const data = await this.api.getPhotographersId()
+        const photographerMedias = data.media.filter(media => media.photographerId === parseInt(photographerId));
+        
+        photographerMedias.forEach(media => {
+            const Template = new MediaCard(media)
+            this.$mediasWrapper.appendChild(Template.createMediaCard())        
+        });    
+    }
+}
+
+const app = new App()
+app.main()
