@@ -126,8 +126,15 @@ font-size: 24px;
     grid-template-columns: repeat(3, 1fr);
 }
 
-.mediaPicture img {
+.mediaContainer img {
     border-radius: 8px;
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.mediaContainer video {
     height: 300px;
     width: 350px;
     object-fit: cover;
@@ -138,10 +145,10 @@ font-size: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 350px;
+    width: 349px;
 }
 
 .media-card-wrapper h3 {
     color: #901C1C;
-    font-size: 24px;
+    font-size: 20px;
 }

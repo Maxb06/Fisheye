@@ -53,26 +53,41 @@ export class MediaCard {
         this._media = media
     }
 
-    createMediaCard() {
-        const $wrapper = document.createElement('div');
-        $wrapper.classList.add('media-card-wrapper');
-
-        const mediaCard = `
-            <div class="mediaPicture">
-                <img
-                    alt="${this._media.title}"
-                    src="/assets/photographers/${this._media.image}"
-                />
-            </div>
-            <div class="mediaInfo">
-                <h3>${this._media.title}</h3>
-                <p>
-                    <span>${this._media.likes}</span>
-                </p>
-            </div>
-        `
-        
-        $wrapper.innerHTML = mediaCard
-        return $wrapper
+        createMediaCard() {
+            const $wrapper = document.createElement('div');
+            $wrapper.classList.add('media-card-wrapper');
+    
+            let mediaElement;
+            if (this._media.image) {
+                mediaElement = `
+                    <img
+                        alt="${this._media.title}"
+                        src="/assets/photographers/${this._media.image}"
+                    />
+                `;
+            } else if (this._media.video) {
+                mediaElement = `
+                    <video controls>
+                        <source src="/assets/photographers/${this._media.video}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            }
+    
+            const mediaCard = `
+                <div class="mediaContainer">
+                    ${mediaElement}
+                </div>
+                <div class="mediaInfo">
+                    <h3>${this._media.title}</h3>
+                    <p>
+                        <span>${this._media.likes}</span>
+                    </p>
+                </div>
+            `;
+            
+            $wrapper.innerHTML = mediaCard;
+            return $wrapper;
+        }
     }
-}
+    

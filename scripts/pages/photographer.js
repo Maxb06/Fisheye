@@ -66,6 +66,7 @@ loadPhotographerDetails();
 /* Affiche la galerie sur la page photographe */
 
 import { Api } from '../api/service.js';
+import { MediaFactory } from '../api/mediaFactory.js';
 import { MediaCard } from '../templates/photographer.js';
 
 class App {
@@ -82,7 +83,8 @@ class App {
         const photographerMedias = data.media.filter(media => media.photographerId === parseInt(photographerId));
         
         photographerMedias.forEach(media => {
-            const Template = new MediaCard(media)
+            const mediaObject = MediaFactory.createMedia(media);
+            const Template = new MediaCard(media);
             this.$mediasWrapper.appendChild(Template.createMediaCard())        
         });    
     }
