@@ -1,4 +1,4 @@
-    import { getPhotographers } from '../api/service.js';
+    import { getPhotographers } from '../services/api.js';
     import { photographerTemplate } from '../templates/photographer.js';
 
     /**

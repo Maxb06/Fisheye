@@ -69,7 +69,7 @@ export class MediaCard {
                 mediaElement = `
                     <video controls>
                         <source src="/assets/photographers/${this._media.video}" type="video/mp4">
-                        Your browser does not support the video tag.
+                        Your browser does not support this video.
                     </video>
                 `;
             }
@@ -79,7 +79,7 @@ export class MediaCard {
                     ${mediaElement}
                 </div>
                 <div class="mediaInfo">
-                    <h3>${this._media.title}</h3>
+                    <h2>${this._media.title}</h2>
                     <p>
                         <span>${this._media.likes}</span>
                     </p>

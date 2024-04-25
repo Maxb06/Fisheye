@@ -1,7 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
 
-import { getPhotographers } from '../api/service.js';
+import { getPhotographers } from '../services/api.js';
 
 /**
  * Affiche les données du photographe dans le header de la page photographer.html.
@@ -65,8 +65,8 @@ loadPhotographerDetails();
 
 /* Affiche la galerie sur la page photographe */
 
-import { Api } from '../api/service.js';
-import { MediaFactory } from '../api/mediaFactory.js';
+import { Api } from '../services/api.js';
+import { MediaFactory } from '../services/mediaFactory.js';
 import { MediaCard } from '../templates/photographer.js';
 
 class App {
