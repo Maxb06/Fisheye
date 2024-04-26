@@ -1,7 +1,8 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-
 import { getPhotographers } from '../services/api.js';
+import { Api } from '../services/api.js';
+import { MediaCard } from '../templates/photographer.js';
 
 /**
  * Affiche les données du photographe dans le header de la page photographer.html.
@@ -11,7 +12,7 @@ async function displayPhotographerDetails(photographer) {
     const photographerSection = document.querySelector(".photograph-header");
     if (photographerSection) {
         const { name, tagline, city, country, portrait } = photographer;
-        
+
         const photographerText = document.createElement('div');
         photographerText.classList.add('photographer-text');
         photographerText.innerHTML = `
@@ -65,10 +66,6 @@ loadPhotographerDetails();
 
 /* Affiche la galerie sur la page photographe */
 
-import { Api } from '../services/api.js';
-import { MediaFactory } from '../services/mediaFactory.js';
-import { MediaCard } from '../templates/photographer.js';
-
 class App {
     constructor() {
         this.$mediasWrapper = document.querySelector('.media-wrapper')
@@ -81,12 +78,11 @@ class App {
 
         const data = await this.api.getPhotographersId()
         const photographerMedias = data.media.filter(media => media.photographerId === parseInt(photographerId));
-        
+
         photographerMedias.forEach(media => {
-            const mediaObject = MediaFactory.createMedia(media);
             const Template = new MediaCard(media);
-            this.$mediasWrapper.appendChild(Template.createMediaCard())        
-        });    
+            this.$mediasWrapper.appendChild(Template.createMediaCard())
+        });
     }
 }
 
