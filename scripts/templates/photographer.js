@@ -1,3 +1,5 @@
+import { MediaFactory } from '../services/mediaFactory.js';
+
 /**
  * Modèle de photographe.
  * @typedef {Object} PhotographerModel
@@ -28,7 +30,6 @@ export function photographerTemplate(data) {
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute('alt', `Portrait de ${name}`);
-        img.setAttribute('aria-label', `Portrait de ${name}, photographe basé à ${city}, ${country}`);
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const pLocations = document.createElement( 'p' );
@@ -53,41 +54,32 @@ export class MediaCard {
         this._media = media
     }
 
-        createMediaCard() {
-            const $wrapper = document.createElement('div');
-            $wrapper.classList.add('media-card-wrapper');
-    
-            let mediaElement;
-            if (this._media.image) {
-                mediaElement = `
-                    <img
-                        alt="${this._media.title}"
-                        src="/assets/photographers/${this._media.image}"
-                    />
-                `;
-            } else if (this._media.video) {
-                mediaElement = `
-                    <video controls>
-                        <source src="/assets/photographers/${this._media.video}" type="video/mp4">
-                        Your browser does not support this video.
-                    </video>
-                `;
-            }
-    
-            const mediaCard = `
-                <div class="mediaContainer">
-                    ${mediaElement}
-                </div>
-                <div class="mediaInfo">
-                    <h2>${this._media.title}</h2>
-                    <p>
-                        <span>${this._media.likes}</span>
-                    </p>
-                </div>
-            `;
-            
-            $wrapper.innerHTML = mediaCard;
-            return $wrapper;
+    createMediaCard() {
+        const $wrapper = document.createElement('div');
+        $wrapper.classList.add('media-card-wrapper');
+
+        let mediaElement;
+        const mediaFactory = MediaFactory.createMedia(this._media);
+        if (this._media.image) {
+            mediaElement = mediaFactory.createImageElement();
+        } else if (this._media.video) {
+            mediaElement = mediaFactory.createVideoElement();
         }
+
+        const mediaCard = `
+            <div class="mediaContainer">
+                ${mediaElement}
+            </div>
+            <div class="mediaInfo">
+                <h2>${this._media.title}</h2>
+                <p>
+                    <span>${this._media.likes}<i class="fa-solid fa-heart" aria-label="likes"></i></span>
+                </p>
+            </div>
+        `;
+        
+        $wrapper.innerHTML = mediaCard;
+        return $wrapper;
     }
+}
     
