@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" alt="logo du site">
-      </a>
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
-      </div>
-      <div class="media-wrapper">
-        <!-- div qui contient les médias du photographe -->
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <a href="index.html">
+      <img src="assets/images/logo.png" class="logo" alt="logo du site">
+    </a>
+  </header>
+  <main id="main">
+    <div class="photograph-header">
+      <button class="contact_button">Contactez-moi</button>
     </div>
-    </main>
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg">
-        </header>
-				<form>
-					<div>
-						<label for="firstname">Prénom</label>
-						<input type="text" name="firstName" id="firstname">
-					</div>
-          <div>
-						<label for="name">Nom</label>
-						<input type="text" name="lastName" id="name">
-					</div>
-          <div>
-						<label for="email">Email</label>
-						<input type="email" name="email" id="email">
-					</div>
-          <div>
-						<label for="message">Votre message</label>
-						<textarea name="message" id="message"></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script type="module" src="/scripts/pages/photographer.js"></script>
-    <script type="module" src="/scripts/utils/contactForm.js"></script>
-  </body>
+    <div class="media-wrapper">
+      <!-- div qui contient les médias du photographe -->
+    </div>
+  </main>
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" alt="Bouton fermer">
+      </header>
+      <form>
+        <div>
+          <label for="firstname">Prénom</label>
+          <input type="text" name="firstName" id="firstname">
+        </div>
+        <div>
+          <label for="name">Nom</label>
+          <input type="text" name="lastName" id="name">
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email">
+        </div>
+        <div>
+          <label for="message">Votre message</label>
+          <textarea name="message" id="message"></textarea>
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="/scripts/pages/photographer.js"></script>
+  <script type="module" src="/scripts/utils/contactForm.js"></script>
+</body>
+
 </html>
