@@ -13,21 +13,20 @@ async function displayPhotographerDetails(photographer) {
     if (photographerSection) {
         const { name, tagline, city, country, portrait } = photographer;
 
+        // Création des éléments div pour le texte du photographe
         const photographerText = document.createElement('div');
         photographerText.classList.add('photographer-text');
-        photographerText.innerHTML = `
-            <h1>${name}</h1>
-            <p class="location">${city}, ${country}</p>
-            <p>${tagline}</p>
-        `;
+        photographerText.innerHTML = `<h1>${name}</h1><p class="location">${city}, ${country}</p><p>${tagline}</p>`;
 
+        // Création de l'élément img pour le portrait du photographe
         const photographerPortrait = document.createElement('div');
         photographerPortrait.classList.add('photographer-portrait');
-        photographerPortrait.innerHTML = `
-            <img src="assets/photographers/${portrait}" alt="${name}">
-        `;
+        const portraitImg = document.createElement('img');
+        portraitImg.src = `assets/photographers/${portrait}`;
+        portraitImg.alt = name;
+        photographerPortrait.appendChild(portraitImg);
 
-        // Ajout des divs au conteneur .photograph-header
+        // Ajout des éléments au conteneur .photograph-header
         photographerSection.appendChild(photographerText);
         photographerSection.appendChild(photographerPortrait);
     } else {
