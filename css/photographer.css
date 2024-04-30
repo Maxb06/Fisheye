@@ -208,3 +208,24 @@ form input {
 form .contact_button {
     margin-top: 25px;
 }
+
+.custom-select {
+    display: flex;
+    gap: 25px;
+    margin-left: 100px;
+}
+
+.custom-select select {
+    width: 170px;
+    height: 69px;
+    border-radius: 5px;
+    background: #901C1C;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.custom-select select option {
+    width: 170px;
+}

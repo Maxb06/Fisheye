@@ -63,27 +63,74 @@ async function loadPhotographerDetails() {
 loadPhotographerDetails();
 
 
-/* Affiche la galerie sur la page photographe */
+/* Affiche la galerie et gère le tri */
 
 class App {
     constructor() {
-        this.$mediasWrapper = document.querySelector('.media-wrapper')
-        this.api = new Api('/data/photographers.json')
+        this.$mediasWrapper = document.querySelector('.media-wrapper');
+        this.api = new Api('/data/photographers.json');
+        this.mediaData = null; // Garde une copie des données des médias pour le tri
+        this.sortBy = 'likes'; // Critère de tri par défaut
     }
 
     async main() {
         const urlParams = new URLSearchParams(window.location.search);
         const photographerId = urlParams.get('id');
 
-        const data = await this.api.getPhotographersId()
-        const photographerMedias = data.media.filter(media => media.photographerId === parseInt(photographerId));
+        const data = await this.api.getPhotographersId();
+        this.mediaData = data.media.filter(media => media.photographerId === parseInt(photographerId));
 
-        photographerMedias.forEach(media => {
-            const Template = new MediaCard(media);
-            this.$mediasWrapper.appendChild(Template.createMediaCard())
+        this.sortMedia(); // Tri initial des médias
+        this.displayMedia(); // Affichage initial des médias
+    }
+
+    // Méthode pour trier les médias
+    sortMedia() {
+        // Tri des médias en fonction du critère sélectionné (ordre descendant)
+        this.mediaData.sort((a, b) => {
+            if (this.sortBy === 'likes') {
+                return a.likes - b.likes; // Tri par nombre de likes
+            } else if (this.sortBy === 'date') {
+                return new Date(a.date) - new Date(b.date); // Tri par date
+            } else if (this.sortBy === 'title') {
+                return a.title.localeCompare(b.title); // Tri par titre
+            }
         });
+    }
+
+    // Méthode pour afficher les médias
+    displayMedia() {
+        // Efface les médias actuels
+        this.$mediasWrapper.innerHTML = '';
+
+        // Affiche les médias triés
+        this.mediaData.forEach(media => {
+            const Template = new MediaCard(media);
+            this.$mediasWrapper.appendChild(Template.createMediaCard());
+        });
+    }
+
+    // Méthode qui gère le changement de critère de tri
+    handleSortChange(sortBy) {
+        this.sortBy = sortBy; // Met à jour le critère de tri
+        this.sortMedia(); // Trie les médias en fonction du nouveau critère
+        this.displayMedia(); // Met à jour l'affichage des médias
     }
 }
 
-const app = new App()
-app.main()
+const app = new App();
+app.main();
+
+
+// Sélection de la balise select (à deplacer)
+const sortSelect = document.getElementById('sort-select');
+
+// Ajout de l'écouteur d'événements de changement
+sortSelect.addEventListener('change', (event) => {
+    // Récup la valeur sélectionnée
+    const sortBy = event.target.value;
+
+    // Appel de la méthode handleSortChange de 'App' pour mettre à jour le tri des médias
+    app.handleSortChange(sortBy);
+});
+
