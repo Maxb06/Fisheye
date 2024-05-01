@@ -122,7 +122,7 @@ const app = new App();
 app.main();
 
 
-// Sélection de la balise select (à deplacer)
+// Sélection de la balise select
 const sortSelect = document.getElementById('sort-select');
 
 // Ajout de l'écouteur d'événements de changement
@@ -133,4 +133,64 @@ sortSelect.addEventListener('change', (event) => {
     // Appel de la méthode handleSortChange de 'App' pour mettre à jour le tri des médias
     app.handleSortChange(sortBy);
 });
+
+
+// Sélection de toutes les vidéos dans les miniatures de vidéos
+const videoThumbnails = document.querySelectorAll('.video-wrapper');
+
+// Parcours chaque miniature de vidéo
+videoThumbnails.forEach(thumbnail => {
+    // sélection du bouton de lecture dans la miniature de vidéo
+    const playButton = thumbnail.querySelector('.play-button');
+
+    // gestionnaire d'événements pour démarrer la lecture de la vidéo quand le bouton de lecture est cliqué
+    playButton.addEventListener('click', () => {
+        const video = thumbnail.querySelector('video');
+        if (video) {
+            video.play();
+
+            playButton.classList.add('hide');
+        }
+    });
+});
+
+document.addEventListener('click', function(event) {
+    const playButton = event.target.closest('.play-button');
+    if (playButton) {
+        const videoWrapper = playButton.closest('.video-wrapper');
+        const video = videoWrapper.querySelector('video');
+        if (video) {
+            if (video.paused) {
+                video.play();
+                playButton.classList.add('hide');
+            } else {
+                video.pause();
+                playButton.classList.remove('hide');
+            }
+        }
+    } else {
+        // Si l'événement ne provient pas du bouton de lecture, met en pause la vidéo si elle est en lecture
+        const video = event.target.closest('video');
+        if (video && !video.paused) {
+            video.pause();
+            const playButton = video.closest('.video-wrapper').querySelector('.play-button');
+            playButton.classList.remove('hide');
+        }
+    }
+});
+
+
+/*
+const videoElement = document.querySelector('video');
+const playButton = document.querySelector('.play-button');
+
+
+videoElement.addEventListener('play', () => {
+    playButton.classList.add('playing'); 
+});
+
+videoElement.addEventListener('pause', () => {
+    playButton.classList.remove('playing'); 
+});
+*/
 

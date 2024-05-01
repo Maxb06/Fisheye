@@ -215,17 +215,38 @@ form .contact_button {
     margin-left: 100px;
 }
 
-.custom-select select {
+#sort-select {
     width: 170px;
-    height: 69px;
     border-radius: 5px;
     background: #901C1C;
     color: #FFF;
     font-size: 18px;
     font-weight: 700;
     text-align: center;
+    border: none;
 }
 
-.custom-select select option {
-    width: 170px;
+.video-wrapper {
+    position: relative; 
 }
+
+.play-button {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: transparent;
+    color: white;
+    width: 320px;
+    height: 280px;
+    font-size: 50px;
+    border: none;
+}
+
+.hide {
+    display: none;
+}
+
+
+
+
