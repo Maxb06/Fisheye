@@ -121,7 +121,6 @@ class App {
 const app = new App();
 app.main();
 
-
 // Sélection de la balise select
 const sortSelect = document.getElementById('sort-select');
 
@@ -133,7 +132,6 @@ sortSelect.addEventListener('change', (event) => {
     // Appel de la méthode handleSortChange de 'App' pour mettre à jour le tri des médias
     app.handleSortChange(sortBy);
 });
-
 
 // Sélection de toutes les vidéos dans les miniatures de vidéos
 const videoThumbnails = document.querySelectorAll('.video-wrapper');
@@ -175,6 +173,8 @@ document.addEventListener('click', function(event) {
             video.pause();
             const playButton = video.closest('.video-wrapper').querySelector('.play-button');
             playButton.classList.remove('hide');
+        } else if(video) {
+            video.play();
         }
     }
 });

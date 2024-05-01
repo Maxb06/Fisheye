@@ -31,7 +31,7 @@ export class VideoMedia {
                 <source src="/assets/photographers/${this._data.photographerId}/${this._data.video}" type="video/mp4">
                 Your browser does not support this video.
             </video>
-            <button class="play-button"><i class="fa-solid fa-play"></i></button>
+            <button class="play-button" aria-label="Play video"><i class="fa-solid fa-play"></i></button>
         </div>
         `;
     }
