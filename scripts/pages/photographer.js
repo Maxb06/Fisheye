@@ -4,6 +4,10 @@ import { getPhotographers } from '../services/api.js';
 import { Api } from '../services/api.js';
 import { MediaCard } from '../templates/photographer.js';
 
+// Déclaration des variables
+const sortSelect = document.getElementById('sort-select');
+const videoThumbnails = document.querySelectorAll('.video-wrapper');
+
 /**
  * Affiche les données du photographe dans le header de la page photographer.html.
  * @param {Object} photographer - Les données du photographe à afficher.
@@ -62,9 +66,10 @@ async function loadPhotographerDetails() {
 // Appel de la fonction pour charger et afficher les détails du photographe
 loadPhotographerDetails();
 
-
-/* Affiche la galerie et gère le tri */
-
+/**
+ * Classe représentant l'application pour la page photographer.html.
+ * Gère l'affichage des médias, le tri et les interactions utilisateur.
+ */
 class App {
     constructor() {
         this.$mediasWrapper = document.querySelector('.media-wrapper');
@@ -73,6 +78,10 @@ class App {
         this.sortBy = 'likes'; // Critère de tri par défaut
     }
 
+    /**
+     * Méthode principale de l'application.
+     * Charge les données des médias, les trie et les affiche.
+     */
     async main() {
         const urlParams = new URLSearchParams(window.location.search);
         const photographerId = urlParams.get('id');
@@ -84,7 +93,9 @@ class App {
         this.displayMedia(); // Affichage initial des médias
     }
 
-    // Méthode pour trier les médias
+    /**
+     * Trie les médias en fonction du critère sélectionné.
+     */
     sortMedia() {
         // Tri des médias en fonction du critère sélectionné (ordre descendant)
         this.mediaData.sort((a, b) => {
@@ -98,7 +109,9 @@ class App {
         });
     }
 
-    // Méthode pour afficher les médias
+    /**
+     * Affiche les médias triés.
+     */
     displayMedia() {
         // Efface les médias actuels
         this.$mediasWrapper.innerHTML = '';
@@ -110,7 +123,10 @@ class App {
         });
     }
 
-    // Méthode qui gère le changement de critère de tri
+    /**
+     * Gère le changement de critère de tri des médias.
+     * @param {string} sortBy - Le critère de tri sélectionné.
+     */
     handleSortChange(sortBy) {
         this.sortBy = sortBy; // Met à jour le critère de tri
         this.sortMedia(); // Trie les médias en fonction du nouveau critère
@@ -121,38 +137,29 @@ class App {
 const app = new App();
 app.main();
 
-// Sélection de la balise select
-const sortSelect = document.getElementById('sort-select');
-
 // Ajout de l'écouteur d'événements de changement
 sortSelect.addEventListener('change', (event) => {
     // Récup la valeur sélectionnée
     const sortBy = event.target.value;
-
     // Appel de la méthode handleSortChange de 'App' pour mettre à jour le tri des médias
     app.handleSortChange(sortBy);
 });
-
-// Sélection de toutes les vidéos dans les miniatures de vidéos
-const videoThumbnails = document.querySelectorAll('.video-wrapper');
 
 // Parcours chaque miniature de vidéo
 videoThumbnails.forEach(thumbnail => {
     // sélection du bouton de lecture dans la miniature de vidéo
     const playButton = thumbnail.querySelector('.play-button');
-
     // gestionnaire d'événements pour démarrer la lecture de la vidéo quand le bouton de lecture est cliqué
     playButton.addEventListener('click', () => {
         const video = thumbnail.querySelector('video');
         if (video) {
             video.play();
-
             playButton.classList.add('hide');
         }
     });
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const playButton = event.target.closest('.play-button');
     if (playButton) {
         const videoWrapper = playButton.closest('.video-wrapper');
@@ -167,30 +174,14 @@ document.addEventListener('click', function(event) {
             }
         }
     } else {
-        // Si l'événement ne provient pas du bouton de lecture, met en pause la vidéo si elle est en lecture
+        // Pour mettre en pause la vidéo si elle est en lecture et la recommencer une fois finie
         const video = event.target.closest('video');
         if (video && !video.paused) {
             video.pause();
             const playButton = video.closest('.video-wrapper').querySelector('.play-button');
             playButton.classList.remove('hide');
-        } else if(video) {
+        } else if (video) {
             video.play();
         }
     }
 });
-
-
-/*
-const videoElement = document.querySelector('video');
-const playButton = document.querySelector('.play-button');
-
-
-videoElement.addEventListener('play', () => {
-    playButton.classList.add('playing'); 
-});
-
-videoElement.addEventListener('pause', () => {
-    playButton.classList.remove('playing'); 
-});
-*/
-

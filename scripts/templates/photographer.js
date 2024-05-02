@@ -48,12 +48,22 @@ export function photographerTemplate(data) {
     return { name, tagline, city, country, price, picture, getUserCardDOM }
 }
 
-/* Modèle des medias page photographe */
+/**
+ * Modèle de carte pour les médias.
+ */
 export class MediaCard {
+    /**
+     * Crée une instance de la classe MediaCard.
+     * @param {Object} media - Les données du média.
+     */
     constructor(media) {
         this._media = media
     }
 
+    /**
+     * Crée une carte de média HTML à partir des données du média.
+     * @returns {HTMLElement} La carte de média HTML.
+     */
     createMediaCard() {
         const $wrapper = document.createElement('div');
         $wrapper.classList.add('media-card-wrapper');
