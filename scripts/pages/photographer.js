@@ -139,15 +139,12 @@ app.main();
 
 // Ajout de l'écouteur d'événements de changement
 sortSelect.addEventListener('change', (event) => {
-    // Récup la valeur sélectionnée
     const sortBy = event.target.value;
     // Appel de la méthode handleSortChange de 'App' pour mettre à jour le tri des médias
     app.handleSortChange(sortBy);
 });
 
-// Parcours chaque miniature de vidéo
 videoThumbnails.forEach(thumbnail => {
-    // sélection du bouton de lecture dans la miniature de vidéo
     const playButton = thumbnail.querySelector('.play-button');
     // gestionnaire d'événements pour démarrer la lecture de la vidéo quand le bouton de lecture est cliqué
     playButton.addEventListener('click', () => {

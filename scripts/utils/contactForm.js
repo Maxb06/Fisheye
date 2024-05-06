@@ -14,7 +14,7 @@ const form = document.querySelector("form");
  */
 function displayModal() {
     const modal = document.getElementById("contact_modal");
-    modal.style.display = "block";
+    modal.style.display = "flex";
     // Récupération de l'ID du photographe depuis l'URL
     const urlParams = new URLSearchParams(window.location.search);
     const photographerId = parseInt(urlParams.get('id'));
@@ -23,7 +23,7 @@ function displayModal() {
     getPhotographers().then(data => {
         const photographer = data.photographers.find(p => p.id === photographerId);
         if (photographer) {
-            const modalHeader = document.querySelector(".modal header h1");
+            const modalHeader = document.querySelector(".modal .modalHeader h1");
 
             // Vérifier s'il existe déjà un span contenant le nom du photographe
             let photographerNameElement = modalHeader.querySelector("span");

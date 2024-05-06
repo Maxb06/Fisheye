@@ -2,7 +2,7 @@
 <html lang="fr">
 
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
     </div>
     <!-- Tri -->
     <div class="custom-select">
-      <h2>Trier par</h2>
-      <select id="sort-select">
+      <label for="sort-select">Trier par</label>
+      <select id="sort-select" aria-label="Sélecteur de tri">
         <option value="likes">Popularité</option>
         <option value="date">Date</option>
         <option value="title">Titre</option>
@@ -35,26 +35,26 @@
   </main>
   <div id="contact_modal">
     <div class="modal">
-      <header>
+      <div class="modalHeader">
         <h1>Contactez-moi</h1>
         <img src="assets/icons/close.svg" alt="Close Contact form">
-      </header>
+      </div>
       <form>
         <div>
           <label for="firstname">Prénom</label>
-          <input type="text" name="firstName" id="firstname">
+          <input type="text" name="firstName" id="firstname" required minlength="2">
         </div>
         <div>
           <label for="name">Nom</label>
-          <input type="text" name="lastName" id="name">
+          <input type="text" name="lastName" id="name" required minlength="2">
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email">
+          <input type="email" name="email" id="email" required>
         </div>
         <div>
           <label for="message">Votre message</label>
-          <textarea name="message" id="message"></textarea>
+          <textarea name="message" id="message" required minlength="20" maxlength="200"></textarea>
         </div>
         <button class="contact_button">Envoyer</button>
       </form>
