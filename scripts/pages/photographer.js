@@ -39,7 +39,7 @@ async function displayPhotographerDetails(photographer) {
 }
 
 /**
- * Charge les données des photographes et les affiche sur la page photographer.html.
+ * Charge les données des photographes et les affiche dans le header de la page photographer.
  */
 async function loadPhotographerDetails() {
     // Récupération de l'ID du photographe à partir de l'URL
@@ -144,41 +144,54 @@ sortSelect.addEventListener('change', (event) => {
     app.handleSortChange(sortBy);
 });
 
-videoThumbnails.forEach(thumbnail => {
-    const playButton = thumbnail.querySelector('.play-button');
-    // gestionnaire d'événements pour démarrer la lecture de la vidéo quand le bouton de lecture est cliqué
-    playButton.addEventListener('click', () => {
-        const video = thumbnail.querySelector('video');
-        if (video) {
-            video.play();
-            playButton.classList.add('hide');
-        }
-    });
+/* test tri */
+const customSelectTrigger = document.getElementById('sort-select');
+const customOptions = document.querySelector('.custom-options');
+
+customSelectTrigger.addEventListener('click', function() {
+  const expanded = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', !expanded);
+  customOptions.classList.toggle('open');
 });
 
-document.addEventListener('click', function (event) {
-    const playButton = event.target.closest('.play-button');
-    if (playButton) {
-        const videoWrapper = playButton.closest('.video-wrapper');
-        const video = videoWrapper.querySelector('video');
-        if (video) {
-            if (video.paused) {
-                video.play();
-                playButton.classList.add('hide');
-            } else {
-                video.pause();
-                playButton.classList.remove('hide');
-            }
-        }
-    } else {
-        // Pour mettre en pause la vidéo si elle est en lecture et la recommencer une fois finie
-        const video = event.target.closest('video');
-        if (video && !video.paused) {
-            video.pause();
-            const playButton = video.closest('.video-wrapper').querySelector('.play-button');
-            playButton.classList.remove('hide');
-        } else if (video) {
-            video.play();
-        }
-    }
+customOptions.addEventListener('click', function(event) {
+  if (event.target.tagName === 'LI') {
+    const value = event.target.getAttribute('data-value');
+    customSelectTrigger.textContent = event.target.textContent;
+    customSelectTrigger.setAttribute('aria-expanded', 'false');
+    customOptions.classList.remove('open');
+
+    const options = document.querySelectorAll('.custom-options li');
+    options.forEach(option => {
+      option.setAttribute('aria-selected', 'false');
+    });
+    event.target.setAttribute('aria-selected', 'true');
+    
+    customOptions.setAttribute('aria-activedescendant', event.target.id);
+    
+    app.handleSortChange(value);
+
+    updateDropdownContent(value);
+  }
 });
+
+// Fonction pour mettre à jour le menu déroulant en fonction de l'élément sélectionné dans le bouton
+function updateDropdownContent(selectedValue) {
+    const dropdownItems = document.querySelectorAll('.custom-options li');
+    dropdownItems.forEach(item => {
+      item.style.display = 'block';
+    });
+    
+    const selectedItem = document.querySelector(`.custom-options li[data-value="${selectedValue.toLowerCase()}"]`);
+    if (selectedItem) {
+      selectedItem.style.display = 'none';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const initialSelectedItem = document.querySelector('.custom-options li[aria-selected="true"]');
+    if (initialSelectedItem) {
+      initialSelectedItem.style.display = 'none';
+    }
+  });
+

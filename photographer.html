@@ -17,18 +17,24 @@
     </a>
   </header>
   <main id="main">
+    
     <div class="photograph-header">
       <button class="contact_button">Contactez-moi</button>
     </div>
     <!-- Tri -->
-    <div class="custom-select">
-      <label for="sort-select">Trier par</label>
-      <select id="sort-select" aria-label="Sélecteur de tri">
-        <option value="likes">Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-      </select>
+    <div class="custom-select" id="custom-select">
+      <label id="sort-select-label" for="sort-select">Trier par</label>
+      
+        <button id="sort-select" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sort-select-label">Popularité</button>
+        <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
+          <li id="likes" data-value="likes" role="option" aria-selected="true">Popularité</li>
+          <li id="date" data-value="date" role="option" aria-selected="false">Date</li>
+          <li id="title" data-value="title" role="option" aria-selected="false">Titre</li>
+        </ul>
+       
     </div>
+    
+    
     <div class="media-wrapper">
       <!-- div qui contient les médias du photographe -->
     </div>
