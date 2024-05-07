@@ -6,7 +6,8 @@ import { MediaCard } from '../templates/photographer.js';
 
 // Déclaration des variables
 const sortSelect = document.getElementById('sort-select');
-const videoThumbnails = document.querySelectorAll('.video-wrapper');
+const customSelectTrigger = document.getElementById('sort-select');
+const customOptions = document.querySelector('.custom-options');
 
 /**
  * Affiche les données du photographe dans le header de la page photographer.html.
@@ -144,54 +145,76 @@ sortSelect.addEventListener('change', (event) => {
     app.handleSortChange(sortBy);
 });
 
-/* test tri */
-const customSelectTrigger = document.getElementById('sort-select');
-const customOptions = document.querySelector('.custom-options');
-
-customSelectTrigger.addEventListener('click', function() {
-  const expanded = this.getAttribute('aria-expanded') === 'true';
-  this.setAttribute('aria-expanded', !expanded);
-  customOptions.classList.toggle('open');
+/**
+ * Fonction exécutée lorsque le déclencheur de sélection personnalisé est cliqué.
+ * Développe ou réduit la liste déroulante des options de tri.
+ * @function
+ * @param {MouseEvent} event - L'événement de clic.
+ * @returns {void}
+ */
+customSelectTrigger.addEventListener('click', function () {
+    const expanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !expanded);
+    customOptions.classList.toggle('open');
 });
 
-customOptions.addEventListener('click', function(event) {
-  if (event.target.tagName === 'LI') {
-    const value = event.target.getAttribute('data-value');
-    customSelectTrigger.textContent = event.target.textContent;
-    customSelectTrigger.setAttribute('aria-expanded', 'false');
-    customOptions.classList.remove('open');
+/**
+ * Fonction exécutée lorsqu'un élément de la liste déroulante des options de tri est cliqué.
+ * Met à jour l'élément sélectionné et déclenche la mise à jour du tri des médias.
+ * @function
+ * @param {MouseEvent} event - L'événement de clic.
+ * @returns {void}
+ */
+customOptions.addEventListener('click', function (event) {
+    if (event.target.tagName === 'LI') {
+        const value = event.target.getAttribute('data-value');
+        customSelectTrigger.textContent = event.target.textContent;
+        customSelectTrigger.setAttribute('aria-expanded', 'false');
+        customOptions.classList.remove('open');
 
-    const options = document.querySelectorAll('.custom-options li');
-    options.forEach(option => {
-      option.setAttribute('aria-selected', 'false');
-    });
-    event.target.setAttribute('aria-selected', 'true');
-    
-    customOptions.setAttribute('aria-activedescendant', event.target.id);
-    
-    app.handleSortChange(value);
+        const options = document.querySelectorAll('.custom-options li');
+        options.forEach(option => {
+            option.setAttribute('aria-selected', 'false');
+        });
+        event.target.setAttribute('aria-selected', 'true');
 
-    updateDropdownContent(value);
-  }
+        customOptions.setAttribute('aria-activedescendant', event.target.id);
+
+        app.handleSortChange(value);
+
+        updateDropdownContent(value);
+    }
 });
 
-// Fonction pour mettre à jour le menu déroulant en fonction de l'élément sélectionné dans le bouton
+/**
+ * Met à jour le contenu de la liste déroulante en fonction de l'élément sélectionné.
+ * Cache l'élément sélectionné dans la liste déroulante.
+ * @function
+ * @param {string} selectedValue - La valeur de l'élément sélectionné.
+ * @returns {void}
+ */
 function updateDropdownContent(selectedValue) {
     const dropdownItems = document.querySelectorAll('.custom-options li');
     dropdownItems.forEach(item => {
-      item.style.display = 'block';
+        item.style.display = 'block';
     });
-    
+
     const selectedItem = document.querySelector(`.custom-options li[data-value="${selectedValue.toLowerCase()}"]`);
     if (selectedItem) {
-      selectedItem.style.display = 'none';
+        selectedItem.style.display = 'none';
     }
-  }
+}
 
-  document.addEventListener('DOMContentLoaded', function() {
+/**
+* Fonction exécutée lorsque le document est chargé.
+* Cache l'élément initialement sélectionné dans la liste déroulante.
+* @function
+* @returns {void}
+*/
+document.addEventListener('DOMContentLoaded', function () {
     const initialSelectedItem = document.querySelector('.custom-options li[aria-selected="true"]');
     if (initialSelectedItem) {
-      initialSelectedItem.style.display = 'none';
+        initialSelectedItem.style.display = 'none';
     }
-  });
+});
 
