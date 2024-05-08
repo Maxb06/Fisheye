@@ -69,7 +69,7 @@ loadPhotographerDetails();
 
 /**
  * Classe représentant l'application pour la page photographer.html.
- * Gère l'affichage des médias, le tri et les interactions utilisateur.
+ * Gère l'affichage des médias, le tri, les interactions utilisateur et le carrousel.
  */
 class App {
     constructor() {
@@ -77,12 +77,9 @@ class App {
         this.api = new Api('/data/photographers.json');
         this.mediaData = null; // Garde une copie des données des médias pour le tri
         this.sortBy = 'likes'; // Critère de tri par défaut
+        this.mediaArray = []; // Tableau pour stocker les médias dans la lightbox
     }
 
-    /**
-     * Méthode principale de l'application.
-     * Charge les données des médias, les trie et les affiche.
-     */
     async main() {
         const urlParams = new URLSearchParams(window.location.search);
         const photographerId = urlParams.get('id');
@@ -94,49 +91,111 @@ class App {
         this.displayMedia(); // Affichage initial des médias
     }
 
-    /**
-     * Trie les médias en fonction du critère sélectionné.
-     */
     sortMedia() {
-        // Tri des médias en fonction du critère sélectionné (ordre descendant)
         this.mediaData.sort((a, b) => {
             if (this.sortBy === 'likes') {
-                return a.likes - b.likes; // Tri par nombre de likes
+                return a.likes - b.likes;
             } else if (this.sortBy === 'date') {
-                return new Date(a.date) - new Date(b.date); // Tri par date
+                return new Date(a.date) - new Date(b.date);
             } else if (this.sortBy === 'title') {
-                return a.title.localeCompare(b.title); // Tri par titre
+                return a.title.localeCompare(b.title);
             }
         });
     }
 
-    /**
-     * Affiche les médias triés.
-     */
     displayMedia() {
-        // Efface les médias actuels
         this.$mediasWrapper.innerHTML = '';
 
-        // Affiche les médias triés
-        this.mediaData.forEach(media => {
+        this.mediaData.forEach((media, index) => {
             const Template = new MediaCard(media);
-            this.$mediasWrapper.appendChild(Template.createMediaCard());
+            const mediaCard = Template.createMediaCard();
+            mediaCard.addEventListener('click', () => {
+                this.openLightbox(index);
+            });
+            this.$mediasWrapper.appendChild(mediaCard);
         });
     }
 
-    /**
-     * Gère le changement de critère de tri des médias.
-     * @param {string} sortBy - Le critère de tri sélectionné.
-     */
     handleSortChange(sortBy) {
-        this.sortBy = sortBy; // Met à jour le critère de tri
-        this.sortMedia(); // Trie les médias en fonction du nouveau critère
-        this.displayMedia(); // Met à jour l'affichage des médias
+        this.sortBy = sortBy;
+        this.sortMedia();
+        this.displayMedia();
     }
-}
+
+    openLightbox(index) {
+
+        const lightboxModal = document.querySelector('.lightbox-modal');    
+        const closeButton = document.querySelector('.lightbox-button-close-dialog');
+        const prevButton = document.querySelector('.lightbox-button-previous');
+        const nextButton = document.querySelector('.lightbox-button-next');
+        const lightboxImage = document.querySelector('.lightbox-image');
+        const lightboxVideo = document.querySelector('.lightbox-video');
+        const postDescription = document.querySelector('.lightbox-post-description');
+    
+        lightboxModal.classList.remove('hidden');
+        // Rempli le tableau avec les médias pour le carrousel de la lightbox
+        this.mediaArray = this.mediaData.map(media => {
+            if (media.image) {
+                return {
+                    type: 'image',
+                    src: `assets/photographers/${media.photographerId}/${media.image}`,
+                    alt: media.title
+                };
+            } else if (media.video) {
+                return {
+                    type: 'video',
+                    src: `assets/photographers/${media.photographerId}/${media.video}`,
+                    alt: media.title
+                };
+            }
+        });
+    
+        // Fonction pour afficher la miniature dans la modale lightbox
+        const displayMedia = (index) => {
+            const media = this.mediaArray[index];
+            if (media.type === 'image') {
+                lightboxImage.src = media.src;
+                lightboxImage.alt = media.alt;
+                lightboxImage.classList.remove('hide');
+                lightboxVideo.classList.add('hide');
+            } else if (media.type === 'video') {
+                lightboxVideo.src = media.src;
+                lightboxVideo.classList.remove('hide');
+                lightboxImage.classList.add('hide');
+            }
+            postDescription.textContent = media.alt;
+        };
+    
+        // Affiche le média 
+        displayMedia(index);
+    
+        // Gere la navigation dans la lightbox
+        prevButton.addEventListener('click', () => {
+            index = (index - 1 + this.mediaArray.length) % this.mediaArray.length;
+            displayMedia(index);
+        });
+    
+        nextButton.addEventListener('click', () => {
+            index = (index + 1) % this.mediaArray.length;
+            displayMedia(index);
+        });
+    
+        // Gere la fermeture de la lightbox
+        closeButton.addEventListener('click', () => {
+            lightboxModal.close();
+            lightboxModal.style.display = "none";
+        });
+    
+        // Ouvre la lightbox
+        lightboxModal.showModal();
+        lightboxModal.style.display = "flex";
+    }
+}    
 
 const app = new App();
 app.main();
+
+/* Gestion du tri */
 
 // Ajout de l'écouteur d'événements de changement
 sortSelect.addEventListener('change', (event) => {
