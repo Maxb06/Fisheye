@@ -67,7 +67,7 @@ export class MediaCard {
     createMediaCard() {
         const $wrapper = document.createElement('div');
         $wrapper.classList.add('media-card-wrapper');
-
+    
         let mediaElement;
         const mediaFactory = MediaFactory.createMedia(this._media);
         if (this._media.image) {
@@ -75,7 +75,7 @@ export class MediaCard {
         } else if (this._media.video) {
             mediaElement = mediaFactory.createVideoElement();
         }
-
+    
         const mediaCard = `
             <div class="mediaContainer">
                 ${mediaElement}
@@ -83,13 +83,33 @@ export class MediaCard {
             <div class="mediaInfo">
                 <h2>${this._media.title}</h2>
                 <p>
-                    <span>${this._media.likes}<i class="fa-solid fa-heart" aria-label="likes"></i></span>
+                    <span class="like-count">${this._media.likes}</span><i class="fa-solid fa-heart like-icon" aria-label="likes"></i>
                 </p>
             </div>
         `;
-        
-        $wrapper.innerHTML = mediaCard;
-        return $wrapper;
-    }
-}
     
+        $wrapper.innerHTML = mediaCard;
+    
+        // Attend que le contenu HTML soit ajouté avant de sélectionner les éléments
+        setTimeout(() => {
+            const likeIcon = $wrapper.querySelector('.like-icon');
+            const likeCount = $wrapper.querySelector('.like-count');
+            likeIcon.addEventListener('click', (event) => {
+                event.stopPropagation(); // Pour éviter que le clic ne propage à l'élément parent
+                let currentLikes = parseInt(likeCount.textContent);
+                if (!likeIcon.classList.contains('liked')) {
+                    likeIcon.classList.add('liked');
+                    likeCount.textContent = currentLikes + 1;
+                } else {
+                    likeIcon.classList.remove('liked');
+                    likeCount.textContent = currentLikes - 1;
+                }
+            });
+        }, 0);
+    
+        return $wrapper;
+    }    
+};
+
+   
+
