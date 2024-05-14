@@ -16,42 +16,46 @@
       <img src="assets/images/logo.png" class="logo" alt="logo du site">
     </a>
   </header>
-  <main id="main">
-    
+  <main>
+
     <div class="photograph-header">
       <button class="contact_button">Contactez-moi</button>
     </div>
+
     <!-- Tri -->
     <div class="custom-select" id="custom-select">
-      <label id="sort-select-label" for="sort-select">Trier par</label>    
-        <button id="sort-select" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sort-select-label">Popularité</button>
-        <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
-          <li id="likes" data-value="likes" role="option" aria-selected="true">Popularité</li>
-          <li id="date" data-value="date" role="option" aria-selected="false">Date</li>
-          <li id="title" data-value="title" role="option" aria-selected="false">Titre</li>
-        </ul>      
+      <label id="sort-select-label" for="sort-select">Trier par</label>
+      <button id="sort-select" aria-haspopup="listbox" aria-expanded="false"
+        aria-labelledby="sort-select-label">Popularité</button>
+      <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
+        <li id="likes" data-value="likes" role="option" aria-selected="true">Popularité</li>
+        <li id="date" data-value="date" role="option" aria-selected="false">Date</li>
+        <li id="title" data-value="title" role="option" aria-selected="false">Titre</li>
+      </ul>
     </div>
 
+    <!-- Encart likes & price -->
     <div id="photographer-stats"></div>
-    
-    <div class="media-wrapper">
+
+    <div id="media-gallery">
       <!-- div qui contient les médias du photographe -->
     </div>
-    <!-- Lightbox caroussel --> 
+
+    <!-- Lightbox caroussel -->
     <dialog class="lightbox-modal hidden" role="dialog" aria-label="Vue rapprochée de l'image">
       <div class="lightbox-content">
         <button type="button" class="lightbox-button-close-dialog" aria-label="Bouton pour fermer la boîte de dialogue">
           <i class="fa-solid fa-xmark lightbox-button-close-dialog-icon"></i>
         </button>
-    
+
         <button type="button" class="lightbox-button-previous" aria-label="Bouton pour passer à l'image précédente">
           <i class="fa-solid fa-chevron-left lightbox-button-previous-icon"></i>
         </button>
-    
+
         <button type="button" class="lightbox-button-next" aria-label="Bouton pour passer à l'image suivante">
           <i class="fa-solid fa-chevron-right lightbox-button-next-icon"></i>
         </button>
-    
+
         <div class="lightbox-image-post-description" role="group" aria-roledescription="slide">
           <div class="lightbox-image-container">
             <img src="" alt="[DESCRIPTION TEXTUELLE ALTERNATIVE]" class="lightbox-image hide">
@@ -62,6 +66,8 @@
       </div>
     </dialog>
   </main>
+
+  <!-- Modale de contact -->
   <div id="contact_modal">
     <div class="modal">
       <div class="modalHeader">
@@ -89,6 +95,7 @@
       </form>
     </div>
   </div>
+
   <script type="module" src="/scripts/pages/photographer.js"></script>
   <script type="module" src="/scripts/utils/contactForm.js"></script>
 </body>
