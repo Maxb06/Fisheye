@@ -1,15 +1,4 @@
-#contact_modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-}
-
-/* header */
+/* hero header */
 
 .photograph-header {
     background-color: #FAFAFA;
@@ -27,39 +16,35 @@
 }
 
 .photograph-header :nth-child(2) {
-    order: 1;
-}
-
-.photograph-header :nth-child(3) {
     order: 3;
 }
 
-.photograph-header .contact_button {
-    margin-right: 200px;
+.photograph-header :nth-child(3) {
+    order: 1;
 }
 
-.photographer-portrait img {
+.photograph-header img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.photographer-text h1 {
+.photographer-info h1 {
     color: #D3573C;
     font-size: 64px;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.photographer-text .location {
+.photographer-info .location {
     color: #901C1C;
     font-size: 24px;
     margin-top: 8px;
     margin-bottom: 0;
 }
 
-.photographer-text .location+p {
+.photographer-info .location+p {
     color: #525252;
     font-size: 18px;
 }
@@ -75,6 +60,7 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 50px;
 }
 
 .photograph-header .contact_button:hover {
@@ -85,6 +71,19 @@
 .photograph-header .contact_button:focus {
     background-color: #DB8876;
     color: #000;
+}
+
+/* Modale formulaire lightbox */
+
+#contact_modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
 }
 
 /* Modal contact */
@@ -168,6 +167,71 @@ form .contact_button {
     margin-top: 25px;
 }
 
+/* medias */
+
+#media-gallery {
+    margin: 50px 100px 80px 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 95px;
+    justify-content: center;
+    align-items: center;
+}
+
+.media-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.media-card img {
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.media-card video {
+    height: 300px;
+    width: 350px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.media-info {
+    display: flex;
+    width: 350px;
+    justify-content: space-between;
+}
+
+.media-info h2 {
+    color: #901C1C;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.media-info p {
+    margin-top: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    color: #901C1C;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.media-info p i {
+    cursor: pointer;
+}
+
+.fa-solid {
+    margin-left: 10px;
+}
+
 /* sort select */
 
 .custom-select {
@@ -189,14 +253,13 @@ form .contact_button {
 
 .custom-options {
     position: absolute;
-    top: 64px;
+    top: 69px;
     left: 94px;
     background-color: #fff;
-    list-style: none;
     padding: 0;
     margin: 0;
     display: none;
-    width: 170px; 
+    width: 170px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
@@ -248,94 +311,17 @@ form .contact_button {
     border-bottom-right-radius: 5px;
 }
 
-/* medias */
+/* encart */
 
-.media-wrapper {
-    margin: 50px 100px 100px 100px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 95px;
-    justify-content: center;
-    align-items: center;
-}
-
-.mediaContainer {
-    box-sizing: border-box;
-}
-
-.mediaContainer img {
-    height: 300px;
-    width: 350px;
-    object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.mediaContainer video {
-    height: 300px;
-    width: 350px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.mediaInfo {
-    display: flex;
-    justify-content: space-between;
-    width: 350px;
-}
-
-.mediaInfo p {
-    margin-top: 8px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    color: #901C1C;
-    font-weight: 500;
-    font-size: 20px;
-}
-
-.mediaInfo p i {
-    cursor: pointer;
-}
-
-.media-card-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    box-sizing: border-box;
-}
-
-.media-card-wrapper h2 {
-    color: #901C1C;
-    font-size: 20px;
-    font-weight: 400;
-    margin-top: 8px;
-    margin-bottom: 20px;
-}
-
-.fa-solid {
-    margin-left: 10px;
-}
-
-/* icone lecture video */
-
-.video-wrapper {
-    position: relative;
-    cursor: pointer;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    color: white;
-    width: 320px;
-    height: 280px;
-    font-size: 34px;
-    border: none;
-    cursor: pointer;
+#photographer-stats {
+    width: 376px;
+    height: 89px;
+    background-color: #DB8876;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: fixed;
+    bottom: 0;
+    right: 36px;
 }
 
 /* Carrousel lightbox */
@@ -344,29 +330,30 @@ form .contact_button {
     display: none;
 }
 
-.hidden {
-    display: none;
-}
-
 .lightbox-modal {
-    width: 1253px;
+    max-width: 1440px;
+    width: 100%;
+    height: auto;
     border: none;
-    justify-content: center; 
-    margin: 0 auto; 
     position: fixed;
-    align-items: center;
 }
 
-.lightbox-modal::backdrop{
+.lightbox-modal::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-image-container {
+    display: flex;
+    justify-content: center;
 }
 
 .lightbox-image-container img,
 .lightbox-image-container video {
     object-fit: cover;
     border-radius: 5px;
-    width: 950px;
-    height: 814px;
+    width: 1050px;
+    height: 818px;
+    
 }
 
 .lightbox-button-close-dialog,
@@ -386,7 +373,7 @@ form .contact_button {
 
 .lightbox-button-previous {
     top: 45%;
-    left : 4%;
+    left: 4%;
 }
 
 .lightbox-button-next {
@@ -408,5 +395,29 @@ form .contact_button {
     font-weight: 600;
     margin-top: 10px;
     margin-bottom: 0;
+    text-align: left;
+    padding-left: 192px;
+    
 }
 
+/* icone lecture video */
+
+.video-wrapper {
+    position: relative;
+    cursor: pointer;
+    width: 350px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: white;
+    width: 320px;
+    height: 280px;
+    font-size: 34px;
+    border: none;
+    cursor: pointer;
+}
