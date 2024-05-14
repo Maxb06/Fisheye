@@ -25,15 +25,13 @@ function displayModal() {
         if (photographer) {
             const modalHeader = document.querySelector(".modal .modalHeader h1");
 
-            // Vérifier s'il existe déjà un span contenant le nom du photographe
             let photographerNameElement = modalHeader.querySelector("span");
 
             if (!photographerNameElement) {
-                // Si aucun span n'existe, créer un nouveau
                 photographerNameElement = document.createElement("span");
                 modalHeader.appendChild(photographerNameElement);
             }
-            // Met à jour le contenu du span avec le nom du photographe
+
             photographerNameElement.textContent = photographer.name;
         }
     });
@@ -47,10 +45,10 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-// Ecouteurs d'évenénements : Affiche la modal lors du clic sur le bouton de contact
+// Ecouteurs d'évenénements : Affiche la modale lors du clic sur le bouton de contact
 modalBtn.addEventListener("click", displayModal);
 
-// Ecouteurs d'évenénements : Ferme la modal lors du clic sur le bouton de fermeture
+// Ecouteurs d'évenénements : Ferme la modale lors du clic sur le bouton de fermeture
 closeBtn.addEventListener("click", closeModal);
 
 // Renvoi les données du formulaire
@@ -62,7 +60,7 @@ form.addEventListener("submit", (event) => {
         email: emailBalise.value,
         message: textAreaBalise.value
     };
-    // Pour le moment, affiche les données du formulaire dans la console
+    // affiche les données du formulaire dans la console
     console.log(formData);
 });
 
