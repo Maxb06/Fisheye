@@ -1,10 +1,25 @@
 import { MediaFactory } from '../factory/mediaFactory.js';
 
-/* Template pour la page d'accueil */
+/**
+ * Crée un template pour afficher les détails des photographes sur la page d'accueil.
+ * @param {Object} data - Les données du photographe.
+ * @param {number} data.id - L'ID du photographe.
+ * @param {string} data.name - Le nom du photographe.
+ * @param {string} data.portrait - Le portrait du photographe.
+ * @param {string} data.city - La ville du photographe.
+ * @param {string} data.country - Le pays du photographe.
+ * @param {string} data.tagline - Le slogan du photographe.
+ * @param {number} data.price - Le prix par jour du photographe.
+ * @returns {Object} Un objet contenant la méthode getUserCardDOM
+ */
 export function photographerTemplate(data) {
     const { id, name, portrait, city, country, tagline, price } = data;
     const picture = `assets/photographers/${portrait}`;
 
+    /**
+     * Crée l'élément DOM pour la carte du photographe.
+     * @returns {HTMLElement} élément contenant les informations du photographe.
+     */
     function getUserCardDOM() {
         const article = document.createElement('article');
 
@@ -45,7 +60,15 @@ export function photographerTemplate(data) {
     return { getUserCardDOM };
 }
 
-/* Template haut de page photographe */
+/**
+ * crée le template pour afficher les détails du photographe en haut de page de la page photographe.
+ * @param {Object} photographer - Les données du photographe.
+ * @param {string} photographer.name - Le nom du photographe.
+ * @param {string} photographer.tagline - Le slogan du photographe.
+ * @param {string} photographer.city - La ville du photographe.
+ * @param {string} photographer.country - Le pays du photographe.
+ * @param {string} photographer.portrait - Le portrait du photographe.
+ */
 export function photographerDetailsTemplate(photographer) {
     const photographerSection = document.querySelector(".photograph-header");
     
@@ -75,7 +98,14 @@ export function photographerDetailsTemplate(photographer) {
     photographerSection.appendChild(infoDiv);
 }
 
-/* Template galerie medias page photographe */
+/**
+ * Crée la structure pour afficher la galerie des miniatures médias sur la page du photographe.
+ * @param {Object} media - Les données du média.
+ * @param {number} media.id - L'identifiant unique du média.
+ * @param {string} media.title - Le titre du média.
+ * @param {number} media.likes - Le nombre de likes du média.
+ * @returns {HTMLElement} - L'élément div contenant les informations du média.
+ */
 export function createMediaCard (media) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('media-card');
@@ -106,7 +136,13 @@ export function createMediaCard (media) {
     return wrapper;
 }
 
-/* Template de l'encart - Affiche le tarif /jour et le total des likes */
+/**
+ * Affiche l'encart avec le tarif journalier et le total des likes d'un photographe.
+ * @param {Object} photographer - Les données du photographe.
+ * @param {number} photographer.price - Le tarif journalier du photographe.
+ * @param {Array<Object>} mediaData - Les données des médias du photographe.
+ * @param {number} mediaData[].likes - Le nombre de likes pour un média.
+ */
 export function infoTemplate(photographer, mediaData) {
     const pricingContainer = document.getElementById('photographer-stats');
     if (!pricingContainer) {
