@@ -169,7 +169,7 @@ form .contact_button {
 /* medias */
 
 #media-gallery {
-    margin: 50px 100px 80px 100px;
+    margin: 50px 100px 70px 100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px 95px;
@@ -227,8 +227,15 @@ form .contact_button {
     cursor: pointer;
 }
 
-.fa-solid {
+.media-info p .like-icon {
     margin-left: 10px;
+    color: transparent;
+    transition: color 0.2s ease-in-out;
+    -webkit-text-stroke: 1px #901C1C;
+}
+
+.media-info p .like-icon.liked {
+    color: #901C1C;   
 }
 
 /* sort select */
@@ -332,6 +339,10 @@ form .contact_button {
 .total-likes-container {
     display: flex;
     align-items: center;
+}
+
+.total-likes-container .like-icon {
+    margin-left: 10px;
 }
 
 /* Carrousel lightbox */
