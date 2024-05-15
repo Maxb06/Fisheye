@@ -51,7 +51,10 @@ modalBtn.addEventListener("click", displayModal);
 // Ecouteurs d'évenénements : Ferme la modale lors du clic sur le bouton de fermeture
 closeBtn.addEventListener("click", closeModal);
 
-// Renvoi les données du formulaire
+/**
+ * Gère la soumission du formulaire de contact.
+ * @param {Event} event - L'événement de soumission du formulaire.
+ */
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = {

@@ -1,3 +1,9 @@
+/**
+ * Trie les éléments média selon le critère spécifié.
+ * @param {string} criteria - Le critère de tri ('likes', 'date', 'title').
+ * @param {Array<Object>} mediaData - Les données des médias à trier.
+ * @returns {Array<Object>} - Les médias triés.
+ */
 export function sortMedia(criteria, mediaData) {
     return [...mediaData].sort((a, b) => {
         if (criteria === 'likes') {
@@ -10,6 +16,13 @@ export function sortMedia(criteria, mediaData) {
     });
 }
 
+/**
+ * Configure les options de tri et met à jour l'affichage des médias triés.
+ * @param {HTMLElement} sortSelectButton - Le bouton pour ouvrir/fermer le menu de tri.
+ * @param {HTMLElement} customOptions - La liste des options de tri.
+ * @param {Array<Object>} mediaData - Les données des médias à trier.
+ * @param {function} displayMedia - La fonction pour afficher les médias triés.
+ */
 export function setupSortOptions(sortSelectButton, customOptions, mediaData, displayMedia) {
     // Gestion du clic sur le bouton pour ouvrir/fermer le tri
     sortSelectButton.addEventListener('click', () => {
@@ -32,6 +45,11 @@ export function setupSortOptions(sortSelectButton, customOptions, mediaData, dis
     });
 }
 
+/**
+ * Met à jour l'affichage des options du menu de tri.
+ * @param {string} selectedCriteria - Le critère de tri sélectionné.
+ * @param {HTMLElement} customOptions - La liste des options de tri.
+ */
 function updateDropdown(selectedCriteria, customOptions) {
     const options = customOptions.querySelectorAll('li');
     options.forEach(option => {
