@@ -1,6 +1,10 @@
 import { getPhotographers } from '../services/api.js';
 import { photographerTemplate } from '../templates/photographer.js';
 
+/**
+ * Affiche les données des photographes sur la page.
+ * @param {Array<Object>} photographers - La liste des photographes.
+ */
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -11,6 +15,10 @@ async function displayData(photographers) {
     });
 }
 
+/**
+ * Initialise l'application en récupérant et en affichant les données des photographes.
+ * @async
+ */
 async function init() {
     try {
         // Récupère les datas des photographes

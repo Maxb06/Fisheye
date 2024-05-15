@@ -1,3 +1,6 @@
+/**
+ * Représente un média image.
+ */
 export class ImageMedia {
     constructor(data) {
         this._data = data;
@@ -11,6 +14,9 @@ export class ImageMedia {
     }
 }
 
+/**
+ * Représente un média vidéo.
+ */
 export class VideoMedia {
     constructor(data) {
         this._data = data;
@@ -37,6 +43,9 @@ export class VideoMedia {
     }
 }
 
+/**
+ * Fabrique des instances de médias (image ou vidéo).
+ */
 export class MediaFactory {
     static createMedia(data) {
         if (data.image) {
