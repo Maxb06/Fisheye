@@ -33,8 +33,7 @@
 .photographer-info h1 {
     color: #D3573C;
     font-size: 64px;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
 }
 
 .photographer-info .location {
@@ -254,7 +253,7 @@ form .contact_button {
 .custom-options {
     position: absolute;
     top: 69px;
-    left: 94px;
+    left: 94.5px;
     background-color: #fff;
     padding: 0;
     margin: 0;
@@ -262,6 +261,7 @@ form .contact_button {
     width: 170px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    z-index: 9999;
 }
 
 .custom-options.open {
@@ -315,13 +315,23 @@ form .contact_button {
 
 #photographer-stats {
     width: 376px;
-    height: 89px;
+    height: 68px;
     background-color: #DB8876;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     position: fixed;
     bottom: 0;
     right: 36px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+    font-size: 24px;
+}
+
+.total-likes-container {
+    display: flex;
+    align-items: center;
 }
 
 /* Carrousel lightbox */
@@ -352,7 +362,7 @@ form .contact_button {
     object-fit: cover;
     border-radius: 5px;
     width: 1050px;
-    height: 90vh;
+    height: 91vh;
     
 }
 

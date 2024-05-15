@@ -45,6 +45,7 @@ export function photographerTemplate(data) {
     return { getUserCardDOM };
 }
 
+/* Template haut de page photographe */
 export function photographerDetailsTemplate(photographer) {
     const photographerSection = document.querySelector(".photograph-header");
     
@@ -74,9 +75,11 @@ export function photographerDetailsTemplate(photographer) {
     photographerSection.appendChild(infoDiv);
 }
 
+/* Template galerie medias page photographe */
 export function createMediaCard (media) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('media-card');
+    wrapper.setAttribute('data-id', media.id); 
 
     const mediaContent = MediaFactory.createMedia(media);
     wrapper.appendChild(mediaContent);
@@ -103,19 +106,36 @@ export function createMediaCard (media) {
     return wrapper;
 }
 
-export function infoTemplate(photographer) {
-    // Récupération du conteneur existant dans le DOM
+/* Template de l'encart - Affiche le tarif /jour et le total des likes */
+export function infoTemplate(photographer, mediaData) {
     const pricingContainer = document.getElementById('photographer-stats');
     if (!pricingContainer) {
-        console.error("Le conteneur de tarification n'a pas été trouvé dans le DOM.");
-        return;
+      console.error("Container not found.");
+      return;
     }
 
-    // Assure la propreté du conteneur si réutilisation
     pricingContainer.innerHTML = '';
-    // Création et ajout de l'élément de prix
     const price = document.createElement('p');
-    price.textContent = `${photographer.price}€/jour`;
-    price.className = 'pricing-info'; // Appliquez la classe pour le style si nécessaire
+    price.textContent = `${photographer.price} € / jour`;
+    price.className = 'pricing-info';
+
+    const totalLikes = mediaData.reduce((acc, media) => acc + media.likes, 0);
+    const totalLikesContainer = document.createElement('div');
+    totalLikesContainer.className = 'total-likes-container';
+
+    const totalLikesElement = document.createElement('p');
+    totalLikesElement.id = 'total-likes';
+    totalLikesElement.textContent = totalLikes;
+    totalLikesElement.className = 'total-likes-info';
+
+    const likeIcon = document.createElement('i');
+    likeIcon.className = 'fa-solid fa-heart like-icon';
+
+    totalLikesContainer.appendChild(totalLikesElement);
+    totalLikesContainer.appendChild(likeIcon);
+
     pricingContainer.appendChild(price);
+    pricingContainer.appendChild(totalLikesContainer);
 }
+
+  
