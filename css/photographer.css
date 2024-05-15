@@ -248,6 +248,22 @@ form .contact_button {
     position: relative;
 }
 
+#sort-select {
+    width: 170px;
+    border-radius: 5px;
+    background-color: #901C1C;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: left;
+    padding: 18px 0 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border: none;
+}
+
 #sort-select::after {
     content: url('../assets/icons/downArrow.png');
     margin-left: 20px;
@@ -261,11 +277,11 @@ form .contact_button {
     position: absolute;
     top: 69px;
     left: 94.5px;
-    background-color: #fff;
+   list-style-type: none;
     padding: 0;
     margin: 0;
     display: none;
-    width: 170px;
+    width: 170px; 
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     z-index: 9999;
@@ -288,22 +304,6 @@ form .contact_button {
     font-size: 18px;
     font-weight: 700;
     margin-top: 20px;
-}
-
-#sort-select {
-    width: 170px;
-    border-radius: 5px;
-    background-color: #901C1C;
-    color: #FFF;
-    font-size: 18px;
-    font-weight: 700;
-    text-align: left;
-    padding: 18px 0 15px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-    border: none;
 }
 
 #date,
@@ -366,6 +366,7 @@ form .contact_button {
 .lightbox-image-container {
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .lightbox-image-container img,
