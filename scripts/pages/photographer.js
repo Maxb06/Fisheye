@@ -6,33 +6,10 @@ import { initLightbox, openLightbox } from '../utils/lightboxModal.js';
 let mediaData = [];
 let sortedMedia = [];
 
-async function init() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const photographerId = urlParams.get('id');
-  const { photographers, media } = await getPhotographers();
-  const photographer = photographers.find(p => p.id === parseInt(photographerId));
-
-  if (photographer) {
-    photographerDetailsTemplate(photographer);
-    mediaData = media.filter(m => m.photographerId === photographer.id);
-    sortedMedia = sortMedia('likes', mediaData);
-    displayMedia(sortedMedia);
-    infoTemplate(photographer, mediaData);
-    updateTotalLikes();
-  } else {
-    console.error('Photographe non trouvé');
-  }
-
-  // la config du tri
-  const sortSelectButton = document.getElementById('sort-select');
-  const customOptions = document.querySelector('.custom-options');
-  setupSortOptions(sortSelectButton, customOptions, mediaData, displayMedia);
-
-  // initialise la lightbox
-  initLightbox(sortedMedia);
-}
-
-// Fonction pour afficher les médias dans la galerie
+/**
+ * Affiche les médias dans la galerie.
+ * @param {Array<Object>} mediaItems - Les éléments média à afficher.
+ */
 function displayMedia(mediaItems) {
   const gallery = document.getElementById('media-gallery');
   gallery.innerHTML = '';
@@ -63,6 +40,10 @@ function displayMedia(mediaItems) {
   initLightbox(mediaItems);
 }
 
+/**
+ * Configure les boutons de like pour chaque média.
+ * @param {Array<Object>} mediaItems - Les éléments média pour les likes.
+ */
 function setupLikeButtons(mediaItems) {
   mediaItems.forEach((media) => {
     const mediaCard = document.querySelector(`.media-card[data-id='${media.id}']`);
@@ -87,6 +68,9 @@ function setupLikeButtons(mediaItems) {
   });
 }
 
+/**
+ * Met à jour le total des likes affiché.
+ */
 function updateTotalLikes() {
   const totalLikes = mediaData.reduce((acc, media) => acc + media.likes, 0);
   const totalLikesElement = document.getElementById('total-likes');
@@ -101,6 +85,35 @@ function updateTotalLikes() {
       parent.appendChild(likeIcon);
     }
   }
+}
+
+/**
+ * Initialise la page du photographe.
+ */
+async function init() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const photographerId = urlParams.get('id');
+  const { photographers, media } = await getPhotographers();
+  const photographer = photographers.find(p => p.id === parseInt(photographerId));
+
+  if (photographer) {
+    photographerDetailsTemplate(photographer);
+    mediaData = media.filter(m => m.photographerId === photographer.id);
+    sortedMedia = sortMedia('likes', mediaData);
+    displayMedia(sortedMedia);
+    infoTemplate(photographer, mediaData);
+    updateTotalLikes();
+  } else {
+    console.error('Photographe non trouvé');
+  }
+
+  // la config du tri
+  const sortSelectButton = document.getElementById('sort-select');
+  const customOptions = document.querySelector('.custom-options');
+  setupSortOptions(sortSelectButton, customOptions, mediaData, displayMedia);
+
+  // initialise la lightbox
+  initLightbox(sortedMedia);
 }
 
 document.addEventListener('DOMContentLoaded', init);
