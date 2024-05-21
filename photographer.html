@@ -28,14 +28,15 @@
       <button id="sort-select" aria-haspopup="listbox" aria-expanded="false"
         aria-labelledby="sort-select-label">Popularité</button>
       <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
-        <li id="likes" data-value="likes" role="option" aria-selected="true">Popularité</li>
-        <li id="date" data-value="date" role="option" aria-selected="false">Date</li>
-        <li id="title" data-value="title" role="option" aria-selected="false">Titre</li>
+        <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0">Popularité</li>
+        <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0">Date</li>
+        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0">Titre</li>
       </ul>
     </div>
-
-    <!-- Encart likes & price -->
-    <div id="photographer-stats"></div>
+  
+    <div id="photographer-stats">
+       <!-- Encart likes & price --> 
+    </div>
 
     <div id="media-gallery">
       <!-- div qui contient les médias du photographe -->
@@ -72,7 +73,7 @@
     <div class="modal">
       <div class="modalHeader">
         <h1>Contactez-moi</h1>
-        <img src="assets/icons/close.svg" alt="Close Contact form">
+        <img src="assets/icons/close.svg" alt="Close Contact form" tabindex="0">
       </div>
       <form>
         <div>

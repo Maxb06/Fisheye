@@ -403,7 +403,6 @@ form .contact_button {
     right: 5%;
 }
 
-
 .lightbox-button-close-dialog {
     top: 1%;
     right: 5%;
@@ -418,28 +417,5 @@ form .contact_button {
     margin-top: 10px;
     margin-bottom: 0;
     text-align: left;
-    padding-left: 192px;
-    
-}
-
-/* icone lecture video */
-
-.video-wrapper {
-    position: relative;
-    cursor: pointer;
-    width: 350px;
-}
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: transparent;
-    color: white;
-    width: 320px;
-    height: 280px;
-    font-size: 34px;
-    border: none;
-    cursor: pointer;
+    padding-left: 192px;  
 }

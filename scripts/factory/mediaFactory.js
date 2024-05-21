@@ -7,10 +7,16 @@ export class ImageMedia {
     }
 
     createImageElement() {
+        const link = document.createElement('a');
+        link.href = "#";
+        link.setAttribute('aria-label', this._data.title);
+
         const img = document.createElement('img');
         img.alt = this._data.title;
         img.src = `/assets/photographers/${this._data.photographerId}/${this._data.image}`;
-        return img;
+
+        link.appendChild(img);
+        return link;
     }
 }
 
@@ -23,28 +29,24 @@ export class VideoMedia {
     }
 
     createVideoElement() {
-        const videoWrapper = document.createElement('div');
-        videoWrapper.className = 'video-wrapper';
+        const link = document.createElement('a');
+        link.href = "#";
+        link.setAttribute('aria-label', this._data.title);
 
         const video = document.createElement('video');
         const source = document.createElement('source');
         source.src = `/assets/photographers/${this._data.photographerId}/${this._data.video}`;
         source.type = 'video/mp4';
+
         video.appendChild(source);
+        link.appendChild(video);
 
-        const playButton = document.createElement('button');
-        playButton.className = 'play-button';
-        playButton.setAttribute('aria-label', 'Play video');
-        playButton.innerHTML = '<i class="fa-solid fa-play"></i>';
-        videoWrapper.appendChild(video);
-        videoWrapper.appendChild(playButton);
-
-        return videoWrapper;
+        return link;
     }
 }
 
 /**
- * Fabrique des instances de médias (image ou vidéo).
+ * Crée les instances de médias (image/vidéo).
  */
 export class MediaFactory {
     static createMedia(data) {
