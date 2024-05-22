@@ -1,11 +1,13 @@
 let currentMediaIndex = 0;
 let mediaData = [];
+let isLightboxOpen = false;
 
 /**
  * Ouvre la lightbox avec le média spécifié par l'index.
  * @param {number} index - L'index du média à afficher dans la lightbox.
  */
 export function openLightbox(index) {
+  isLightboxOpen = true;
   currentMediaIndex = index;
   const media = mediaData[currentMediaIndex];
   const lightboxImage = document.querySelector('.lightbox-image');
@@ -31,6 +33,7 @@ export function openLightbox(index) {
  * Ferme la lightbox.
  */
 function closeLightbox() {
+  isLightboxOpen = false;
   const lightboxModal = document.querySelector('.lightbox-modal');
   lightboxModal.close();
 }
@@ -56,6 +59,8 @@ function showNextMedia() {
  * @param {KeyboardEvent} event - L'événement de touche.
  */
 function handleKeyDown(event) {
+  if (!isLightboxOpen) return;
+
   if (event.key === 'Escape') {
     closeLightbox();
   } else if (event.key === 'ArrowLeft') {
@@ -64,6 +69,8 @@ function handleKeyDown(event) {
     showNextMedia();
   }
 }
+
+document.addEventListener('keydown', handleKeyDown);
 
 /**
  * Initialise la lightbox avec les éléments média et les écouteurs d'événements.
@@ -78,8 +85,7 @@ export function initLightbox(mediaItems) {
   closeButton.addEventListener('click', closeLightbox);
   prevButton.addEventListener('click', showPreviousMedia);
   nextButton.addEventListener('click', showNextMedia);
-  document.addEventListener('keydown', handleKeyDown);
-
+  
   document.querySelectorAll('.media-card').forEach((card, index) => {
     card.addEventListener('click', () => openLightbox(index));
   });
