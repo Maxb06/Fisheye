@@ -34,15 +34,37 @@ export function setupSortOptions(sortSelectButton, customOptions, mediaData, dis
     // Gestion du choix de l'élément dans le tri
     customOptions.addEventListener('click', event => {
         if (event.target.tagName === 'LI') {
-            const selectedCriteria = event.target.getAttribute('data-value');
-            sortSelectButton.innerHTML = event.target.textContent;
-            sortSelectButton.setAttribute('aria-expanded', 'false');
-            customOptions.classList.remove('open');
-            const sortedMedia = sortMedia(selectedCriteria, mediaData);
-            displayMedia(sortedMedia);
-            updateDropdown(selectedCriteria, customOptions);
+            selectOption(event.target);
         }
     });
+
+    // Gestion de la navigation clavier et sélection avec la touche "Entrée"
+    customOptions.addEventListener('keydown', event => {
+        const activeElement = document.activeElement;
+        if (event.key === 'Enter' && activeElement.tagName === 'LI') {
+            selectOption(activeElement);
+        } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            const options = [...customOptions.querySelectorAll('li')];
+            let currentIndex = options.indexOf(activeElement);
+            if (event.key === 'ArrowDown') {
+                currentIndex = (currentIndex + 1) % options.length;
+            } else if (event.key === 'ArrowUp') {
+                currentIndex = (currentIndex - 1 + options.length) % options.length;
+            }
+            options[currentIndex].focus();
+        }
+    });
+
+    function selectOption(option) {
+        const selectedCriteria = option.getAttribute('data-value');
+        sortSelectButton.innerHTML = option.textContent;
+        sortSelectButton.setAttribute('aria-expanded', 'false');
+        customOptions.classList.remove('open');
+        const sortedMedia = sortMedia(selectedCriteria, mediaData);
+        displayMedia(sortedMedia);
+        updateDropdown(selectedCriteria, customOptions);
+    }
 }
 
 /**
@@ -67,4 +89,3 @@ document.addEventListener('DOMContentLoaded', function () {
         initialSelectedItem.style.display = 'none';
     }
 });
-
