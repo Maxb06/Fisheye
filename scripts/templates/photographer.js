@@ -112,6 +112,7 @@ export function createMediaCard (media) {
     wrapper.setAttribute('data-id', media.id); 
 
     const mediaContent = MediaFactory.createMedia(media);
+    mediaContent.setAttribute('tabindex', '0');
     wrapper.appendChild(mediaContent);
 
     const info = document.createElement('div');
@@ -127,6 +128,8 @@ export function createMediaCard (media) {
 
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-solid fa-heart like-icon';
+    likeIcon.setAttribute('tabindex', '0');
+
     likes.appendChild(likeCountSpan);
     likes.appendChild(likeIcon);
 

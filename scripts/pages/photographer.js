@@ -22,7 +22,7 @@ function displayMedia(mediaItems) {
     if (mediaElement) {
       mediaElement.addEventListener('click', (event) => {
         event.stopPropagation();
-        openLightbox(index);
+        openLightbox(index, mediaItems);
       });
     }
 
@@ -50,19 +50,31 @@ function setupLikeButtons(mediaItems) {
     if (mediaCard) {
       const likeIcon = mediaCard.querySelector('.like-icon');
       const likeCount = mediaCard.querySelector('.like-count');
-      likeIcon.addEventListener('click', (event) => {
-        event.stopPropagation();
+
+      const toggleLike = () => {
         let currentLikes = parseInt(likeCount.textContent, 10);
         if (!likeIcon.classList.contains('liked')) {
           likeIcon.classList.add('liked');
           likeCount.textContent = currentLikes + 1;
-          media.likes++; // Incrémente le nombre de likes 
+          media.likes++;
         } else {
           likeIcon.classList.remove('liked');
           likeCount.textContent = currentLikes - 1;
-          media.likes--; // Décrémente le nombre de likes
+          media.likes--;
         }
         updateTotalLikes();
+      };
+
+      likeIcon.addEventListener('click', (event) => {
+        event.stopPropagation();
+        toggleLike();
+      });
+
+      likeIcon.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.stopPropagation();
+          toggleLike();
+        }
       });
     }
   });
