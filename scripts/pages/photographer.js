@@ -21,6 +21,7 @@ function displayMedia(mediaItems) {
     const mediaElement = mediaCard.querySelector('img, video');
     if (mediaElement) {
       mediaElement.addEventListener('click', (event) => {
+        event.preventDefault();
         event.stopPropagation();
         openLightbox(index, mediaItems);
       });
