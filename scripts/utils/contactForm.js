@@ -64,12 +64,12 @@ function closeModal() {
  */
 function trapFocus(event) {
     if (event.key === 'Tab') {
-        if (event.shiftKey) { // Tab inverse
+        if (event.shiftKey) { 
             if (document.activeElement === firstFocusableElement) {
                 event.preventDefault();
                 lastFocusableElement.focus();
             }
-        } else { // Tab normal
+        } else { 
             if (document.activeElement === lastFocusableElement) {
                 event.preventDefault();
                 firstFocusableElement.focus();
