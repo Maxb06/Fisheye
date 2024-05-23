@@ -28,11 +28,13 @@ function displayModal() {
         const photographer = data.photographers.find(p => p.id === photographerId);
         if (photographer) {
             const modalHeader = document.querySelector(".modal .modalHeader h1");
+            modalHeader.setAttribute('aria-label', `Formulaire de contact ${photographer.name}`);
 
             let photographerNameElement = modalHeader.querySelector("span");
 
             if (!photographerNameElement) {
                 photographerNameElement = document.createElement("span");
+        
                 modalHeader.appendChild(photographerNameElement);
             }
 
