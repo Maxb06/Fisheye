@@ -19,7 +19,7 @@
   <main>
 
     <div class="photograph-header">
-      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact_modal">Contactez-moi</button>
+      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact_modal" aria-label="Contact Me">Contactez-moi</button>
     </div>
 
     <!-- Tri -->
@@ -43,18 +43,18 @@
     </div>
 
     <!-- Lightbox caroussel -->
-    <dialog class="lightbox-modal hidden" role="dialog" aria-label="Vue rapprochée de l'image">
+    <dialog class="lightbox-modal hidden" role="dialog" aria-label="image closeup view">
       <div class="lightbox-content">
-        <button type="button" class="lightbox-button-close-dialog" aria-label="Bouton pour fermer la boîte de dialogue">
-          <i class="fa-solid fa-xmark lightbox-button-close-dialog-icon"></i>
+        <button type="button" class="lightbox-button-close-dialog" aria-label="Close dialog">
+          <span class="fa-solid fa-xmark lightbox-button-close-dialog-icon"></span>
         </button>
 
-        <button type="button" class="lightbox-button-previous" aria-label="Bouton pour passer à l'image précédente">
-          <i class="fa-solid fa-chevron-left lightbox-button-previous-icon"></i>
+        <button type="button" class="lightbox-button-previous" aria-label="Previous image">
+          <span class="fa-solid fa-chevron-left lightbox-button-previous-icon"></span>
         </button>
 
-        <button type="button" class="lightbox-button-next" aria-label="Bouton pour passer à l'image suivante">
-          <i class="fa-solid fa-chevron-right lightbox-button-next-icon"></i>
+        <button type="button" class="lightbox-button-next" aria-label="Next image">
+          <span class="fa-solid fa-chevron-right lightbox-button-next-icon"></span>
         </button>
 
         <div class="lightbox-image-post-description" role="group" aria-roledescription="slide">
@@ -78,21 +78,21 @@
       <form>
         <div>
           <label for="firstname">Prénom</label>
-          <input type="text" name="firstName" id="firstname" required minlength="2">
+          <input type="text" name="firstName" id="firstname" required minlength="2" aria-label="First name">
         </div>
         <div>
           <label for="name">Nom</label>
-          <input type="text" name="lastName" id="name" required minlength="2">
+          <input type="text" name="lastName" id="name" required minlength="2" aria-label="Last name">
         </div>
         <div>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" required>
+          <input type="email" name="email" id="email" required aria-label="Email">
         </div>
         <div>
           <label for="message">Votre message</label>
-          <textarea name="message" id="message" required minlength="20" maxlength="200"></textarea>
+          <textarea name="message" id="message" required minlength="20" maxlength="200" aria-label="Your message"></textarea>
         </div>
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" aria-label="Close Contact form">Envoyer</button>
       </form>
     </div>
   </div>

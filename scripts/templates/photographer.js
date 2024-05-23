@@ -129,6 +129,7 @@ export function createMediaCard (media) {
     const likeIcon = document.createElement('i');
     likeIcon.className = 'fa-solid fa-heart like-icon';
     likeIcon.setAttribute('tabindex', '0');
+    likeIcon.setAttribute('aria-label',`likes`)
 
     likes.appendChild(likeCountSpan);
     likes.appendChild(likeIcon);

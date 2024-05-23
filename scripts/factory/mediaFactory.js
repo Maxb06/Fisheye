@@ -9,7 +9,7 @@ export class ImageMedia {
     createImageElement() {
         const link = document.createElement('a');
         link.href = "#";
-        link.setAttribute('aria-label', this._data.title);
+        link.setAttribute('aria-label', `Open lightbox to view ${this._data.title}`);
 
         const img = document.createElement('img');
         img.alt = this._data.title;
@@ -31,7 +31,7 @@ export class VideoMedia {
     createVideoElement() {
         const link = document.createElement('a');
         link.href = "#";
-        link.setAttribute('aria-label', this._data.title);
+        link.setAttribute('aria-label', `Open lightbox to view ${this._data.title}`);
 
         const video = document.createElement('video');
         const source = document.createElement('source');
