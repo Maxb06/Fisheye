@@ -28,9 +28,9 @@
       <button id="sort-select" aria-haspopup="listbox" aria-expanded="false"
         aria-labelledby="sort-select-label" tabindex="0">Popularité</button>
       <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
-        <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0">Popularité</li>
-        <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0">Date</li>
-        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0 ">Titre</li>
+        <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0" aria-label="Sort by Popularity">Popularité</li>
+        <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Date">Date</li>
+        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Title">Titre</li>
       </ul>
     </div>      
   
@@ -43,7 +43,7 @@
     </div>
 
     <!-- Lightbox caroussel -->
-    <dialog class="lightbox-modal hidden" role="dialog" aria-label="image closeup view">
+    <dialog class="lightbox-modal hidden" aria-label="image closeup view">
       <div class="lightbox-content">
         <button type="button" class="lightbox-button-close-dialog" aria-label="Close dialog">
           <span class="fa-solid fa-xmark lightbox-button-close-dialog-icon"></span>
@@ -59,8 +59,8 @@
 
         <div class="lightbox-image-post-description" role="group" aria-roledescription="slide">
           <div class="lightbox-image-container">
-            <img src="" alt="[Description textuelle alternative]" class="lightbox-image hide">
-            <video src="" controls class="lightbox-video hide"></video>
+            <img src="#" alt="[Description textuelle alternative]" class="lightbox-image hide">
+            <video src="#" controls class="lightbox-video hide"></video>
           </div>
           <p class="lightbox-post-description">Post description</p>
         </div>
