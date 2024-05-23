@@ -56,6 +56,10 @@ export function setupSortOptions(sortSelectButton, customOptions, mediaData, dis
         }
     });
 
+    /**
+     * Sélectionne une option de tri et met à jour l'affichage.
+     * @param {HTMLElement} option - L'option de tri sélectionnée.
+     */
     function selectOption(option) {
         const selectedCriteria = option.getAttribute('data-value');
         sortSelectButton.innerHTML = option.textContent;
