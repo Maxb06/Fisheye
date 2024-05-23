@@ -19,20 +19,20 @@
   <main>
 
     <div class="photograph-header">
-      <button class="contact_button">Contactez-moi</button>
+      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact_modal">Contactez-moi</button>
     </div>
 
     <!-- Tri -->
     <div class="custom-select" id="custom-select">
       <label id="sort-select-label" for="sort-select">Trier par</label>
       <button id="sort-select" aria-haspopup="listbox" aria-expanded="false"
-        aria-labelledby="sort-select-label">Popularité</button>
+        aria-labelledby="sort-select-label" tabindex="0">Popularité</button>
       <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
         <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0">Popularité</li>
         <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0">Date</li>
-        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0">Titre</li>
+        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0 ">Titre</li>
       </ul>
-    </div>
+    </div>      
   
     <div id="photographer-stats">
        <!-- Encart likes & price --> 
@@ -59,7 +59,7 @@
 
         <div class="lightbox-image-post-description" role="group" aria-roledescription="slide">
           <div class="lightbox-image-container">
-            <img src="" alt="[DESCRIPTION TEXTUELLE ALTERNATIVE]" class="lightbox-image hide">
+            <img src="" alt="[Description textuelle alternative]" class="lightbox-image hide">
             <video src="" controls class="lightbox-video hide"></video>
           </div>
           <p class="lightbox-post-description">Post description</p>
@@ -69,7 +69,7 @@
   </main>
 
   <!-- Modale de contact -->
-  <div id="contact_modal" role="dialog" aria-labelledby="contact_modal_title">
+  <div id="contact_modal" role="dialog">
     <div class="modal">
       <div class="modalHeader">
         <h1>Contactez-moi</h1>

@@ -275,7 +275,7 @@ form .contact_button {
 
 .custom-options {
     position: absolute;
-    top: 69px;
+    top: 68px;
     left: 94.5px;
     list-style-type: none;
     padding: 0;
@@ -292,30 +292,42 @@ form .contact_button {
 }
 
 .custom-options li {
+    display: flex;
+    align-items: center;
     padding: 20px;
     cursor: pointer;
     background-color: rgb(144, 28, 28);
     color: white;
     font-size: 18px;
     font-weight: 700;
+    position: relative;
+}
+
+.custom-options li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    border-top: 1px solid white;
+}
+
+
+.custom-options li:hover {
+    background-color: #DB8876;
+    color: #000;
+}
+
+.custom-options li:focus {
+    background-color: #DB8876;
+    color: #000;
 }
 
 .custom-select label {
     font-size: 18px;
     font-weight: 700;
     margin-top: 20px;
-}
-
-#date,
-#likes,
-#title {
-    border-top: 1px solid white;
-}
-
-#title,
-#date {
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 /* encart */
