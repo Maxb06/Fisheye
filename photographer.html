@@ -19,23 +19,27 @@
   <main>
 
     <div class="photograph-header">
-      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact_modal" aria-label="Contact Me">Contactez-moi</button>
+      <button class="contact_button" aria-haspopup="dialog" aria-controls="contact_modal"
+        aria-label="Contact Me">Contactez-moi</button>
     </div>
 
     <!-- Tri -->
     <div class="custom-select" id="custom-select">
       <label id="sort-select-label" for="sort-select">Trier par</label>
-      <button id="sort-select" aria-haspopup="listbox" aria-expanded="false"
-        aria-labelledby="sort-select-label" tabindex="0">Popularité</button>
+      <button id="sort-select" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sort-select-label"
+        tabindex="0">Popularité</button>
       <ul class="custom-options" role="listbox" aria-activedescendant="selected-option">
-        <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0" aria-label="Sort by Popularity">Popularité</li>
-        <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Date">Date</li>
-        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Title">Titre</li>
+        <li id="likes" data-value="likes" role="option" aria-selected="true" tabindex="0"
+          aria-label="Sort by Popularity">Popularité</li>
+        <li id="date" data-value="date" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Date">Date
+        </li>
+        <li id="title" data-value="title" role="option" aria-selected="false" tabindex="0" aria-label="Sort by Title">
+          Titre</li>
       </ul>
-    </div>      
-  
+    </div>
+
     <div id="photographer-stats">
-       <!-- Encart likes & price --> 
+      <!-- Encart likes & price -->
     </div>
 
     <div id="media-gallery">
@@ -69,20 +73,20 @@
   </main>
 
   <!-- Modale de contact -->
-  <div id="contact_modal" role="dialog">
+  <dialog id="contact_modal">
     <div class="modal">
       <div class="modalHeader">
-        <h1>Contactez-moi</h1>
-        <img src="assets/icons/close.svg" alt="Close Contact form" tabindex="0">
+        <h1>Contactez-moi <span></span></h1>
+        <button class="close-button" aria-label="Close Contact form"><img src="assets/icons/close.svg" alt="Close Contact form"></button>
       </div>
       <form>
         <div>
           <label for="firstname">Prénom</label>
-          <input type="text" name="firstName" id="firstname" required minlength="2" aria-label="First name">
+          <input type="text" name="firstName" id="firstname" required minlength="2" autofocus>
         </div>
         <div>
           <label for="name">Nom</label>
-          <input type="text" name="lastName" id="name" required minlength="2" aria-label="Last name">
+          <input type="text" name="lastName" id="name" required minlength="2">
         </div>
         <div>
           <label for="email">Email</label>
@@ -90,12 +94,12 @@
         </div>
         <div>
           <label for="message">Votre message</label>
-          <textarea name="message" id="message" required minlength="20" maxlength="200" aria-label="Your message"></textarea>
+          <textarea name="message" id="message" required minlength="20" maxlength="200"></textarea>
         </div>
         <button class="contact_button" aria-label="Close Contact form">Envoyer</button>
       </form>
     </div>
-  </div>
+  </dialog>
 
   <script type="module" src="/scripts/pages/photographer.js"></script>
   <script type="module" src="/scripts/utils/contactForm.js"></script>
