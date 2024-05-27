@@ -89,14 +89,6 @@ function updateTotalLikes() {
   const totalLikesElement = document.getElementById('total-likes');
   if (totalLikesElement) {
     totalLikesElement.textContent = totalLikes;
-    const likeIcon = document.createElement('i');
-    likeIcon.className = 'fa-solid fa-heart like-icon';
-    const parent = totalLikesElement.parentNode;
-    if (parent) {
-      parent.innerHTML = '';
-      parent.appendChild(totalLikesElement);
-      parent.appendChild(likeIcon);
-    }
   }
 }
 
