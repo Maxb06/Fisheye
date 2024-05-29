@@ -56,6 +56,13 @@ export function setupSortOptions(sortSelectButton, customOptions, mediaData, dis
         }
     });
 
+    document.addEventListener('click', (event) => {
+        if (!sortSelectButton.contains(event.target) && !customOptions.contains(event.target)) {
+            sortSelectButton.setAttribute('aria-expanded', 'false');
+            customOptions.classList.remove('open');
+        }
+    });
+
     /**
      * Sélectionne une option de tri et met à jour l'affichage.
      * @param {HTMLElement} option - L'option de tri sélectionnée.
