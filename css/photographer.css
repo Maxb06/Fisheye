@@ -81,6 +81,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     border: 2px solid transparent;
+    overflow-y: hidden;
 }
 
 /* Modal contact */
@@ -281,8 +282,8 @@ form .contact_button {
 
 .custom-options {
     position: absolute;
-    top: 68px;
-    left: 94.5px;
+    top: 67px;
+    left: 94.4px;
     list-style-type: none;
     padding: 0;
     margin: 0;
