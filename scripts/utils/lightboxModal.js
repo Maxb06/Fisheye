@@ -18,6 +18,7 @@ export function openLightbox(index) {
   if (media.image) {
     lightboxImage.src = `/assets/photographers/${media.photographerId}/${media.image}`;
     lightboxImage.alt = media.title;
+    lightboxImage.setAttribute('tabindex', '0');
     lightboxImage.classList.remove('hide');
     lightboxVideo.classList.add('hide');
   } else if (media.video) {
